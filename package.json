@@ -1,5 +1,5 @@
 {
-  "name": "app-backend",
+  "name": "trading-fx-app-backend",
   "version": "1.0.0",
   "description": "El backend de un juego de trading",
   "main": "index.js",
