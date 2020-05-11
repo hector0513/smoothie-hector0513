@@ -2,31 +2,48 @@ const { gql } = require("apollo-server");
 
 module.exports = gql`
   type Query {
-    myUser: User!
+    mySmoothie: [Smoothie]!
+    frutas: [Fruta]!
+    liquidos: [Liquido]!
+    proteinas: [Proteina]!
   }
-  type User {
+  type Smoothie {
     id: ID
-    name: String
-    last_name: String
-    email: String
-    create: String
+    nombre: String
+    user: String
+    frutas: [Fruta]
+    liquido: Liquido
+    proteina: Proteina
+    porcentaje: Int
   }
-  type Token {
-    token: String!
+  type Fruta {
+    id: ID
+    nombre: String
+    valor: Int
   }
-  input UserInput {
+  type Liquido {
+    id: ID
+    nombre: String
+    valor: Int
+  }
+  type Proteina {
+    id: ID
+    nombre: String
+  }
+
+  input SmoothieInput {
     nombre: String!
-    apellido: String!
-    email: String!
-    password: String!
+    frutas: [InputFruta]!
+    liquido: ID!
+    proteina: ID!
+    porcentaje: Int!
   }
-  input AuthInput {
-    email: String!
-    password: String!
+  input InputFruta {
+    fruta: ID!
   }
+
   type Mutation {
-    #Usuarios
-    newUser(user: UserInput): User
-    authUser(input: AuthInput): Token
+    newSmoothie(input: SmoothieInput): Smoothie
+    auth(input: String): String!
   }
 `;
